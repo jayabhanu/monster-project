@@ -56,8 +56,37 @@ public class RequestInput {
 
 	}
 
-	// Get a int from the user, must be in acceptable range value
 	public static int getInt(String question, int... acceptableNumber) {
+		String input = null;
+		int resultValue;
+		boolean validInt = false;
+		while (true) {
+			try {
+				System.out.print(question);
+				input = scanner.nextLine();
+				resultValue = Integer.parseInt(input);
+
+				for (int i = 0; i < acceptableNumber.length; i++) {
+					if (resultValue == acceptableNumber[i]) {
+						validInt = true;
+					}
+				}
+				if (!validInt) {
+					throw new InvalidAcceptableNumberException();
+				}
+				return resultValue;
+
+			} catch (NumberFormatException e) {
+				System.out.println("You have not provided a valid integer type (" + input + ")");
+				continue;
+			} catch (InvalidAcceptableNumberException e) {
+				System.out.println("You have not provided an acceptable valid number (" + input + ")");
+			}
+		}
+	}
+
+	// Get a int from the user, must be in acceptable range value
+	public static int getInt(String question, String unacceptableErrorMessage, int min, int max) {
 		int resultValue;
 		// System.out.println(resultValue);
 		String input = null;
@@ -68,25 +97,23 @@ public class RequestInput {
 				System.out.println(question);
 				input = scanner.nextLine();
 				resultValue = Integer.parseInt(input);
-				// System.out.println(resultValue);
-				for (int i = 0; i < acceptableNumber.length; i++) {
-					if (resultValue == acceptableNumber[i]) {
-						validInt = true;
-					}
+
+				if (resultValue >= min && resultValue <= max) {
+					validInt = true;
 				}
+
 				if (!validInt) {
 
 					throw new InvalidAcceptableNumberException();
 				}
 				return resultValue;
 
-				// scanner.close();
-				// return resultValue;
 			} catch (NumberFormatException e) {
 				System.out.println("You have nott provided a valid type (" + input + ")");
 
 			} catch (InvalidAcceptableNumberException e) {
-				System.out.println("You have not an acceptable number (" + input + ")");
+				String message = String.format(unacceptableErrorMessage, min, max);
+				System.out.println(message);
 			}
 		}
 	}
