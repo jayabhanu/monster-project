@@ -1,12 +1,19 @@
 package com.ga.helpers.math;
 
+import static org.testng.Assert.assertEquals;
+
 import java.util.Arrays;
 
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.junit.runners.Parameterized.Parameters;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+
+//import com.beust.jcommander.Parameterized;
+
+//import org.junit.Assert;
+//import org.junit.Test;
+//import org.junit.runner.RunWith;
+//import org.junit.runners.Parameterized;
+//import org.junit.runners.Parameterized.Parameters;
 
 import com.ga.util.helper.exceptions.MyMath;
 
@@ -33,9 +40,9 @@ import com.ga.util.helper.exceptions.MyMath;
  *
  */
 
-@RunWith(Parameterized.class)
+// @RunWith(Parameterized.class)
 public class MultiplicationTests {
-	@Parameters
+	@DataProvider(name = "Power Data")
 	public static Object[][] getData() {
 		Object[][] data = { { new double[] { 2.0, 3.0, 4.0, 2.0 }, 48 }, { new double[] { 2.0, 1.0, 5.0 }, 10.0 },
 				{ new double[] { 3.0, 1.5, }, 4.5 }, { new double[] { 0.0, 5.0, 15.0, 10.0 }, 0.0 },
@@ -43,25 +50,25 @@ public class MultiplicationTests {
 		return data;
 	}
 
-	private double expectedResult;
-	private double[] numbers;
+	// private double expectedResult;
+	// private double[] numbers;
+	//
+	// public MultiplicationTests(double[] numbers, double expectedResult) {
+	// this.numbers = numbers;
+	// this.expectedResult = expectedResult;
+	// }
 
-	public MultiplicationTests(double[] numbers, double expectedResult) {
-		this.numbers = numbers;
-		this.expectedResult = expectedResult;
-	}
-
-	@Test
-	public void testMultiplication() {
-		double actualResult = MyMath.multNumbers(this.numbers);
-		String numberString = Arrays.toString(this.numbers);
+	@Test(dataProvider = "Power Data")
+	public void testMultiplication(double[] num, double expectedResult) {
+		double actualResult = MyMath.multNumbers(num);
+		String numberString = Arrays.toString(num);
 		String errormessage = String.format(
 				"Error: The result of multipying all numbers %s" + "is actually %.2f not expected", numberString,
 				actualResult);
 		String message = String.format("The result of multiplying all numbers %s" + " is %.2f.", numberString,
 				actualResult);
 		System.out.println(message);
-		Assert.assertEquals(errormessage, this.expectedResult, actualResult, 50);
+		assertEquals(actualResult, expectedResult, 50, errormessage);
 	}
 
 }

@@ -10,7 +10,9 @@
 
 package com.ga.util.helper;
 
-import org.junit.*;
+import org.testng.annotations.Test;
+
+//import org.junit.*;
 
 /**
  * AppBasicsTests //ADDD (description of class)
@@ -32,14 +34,16 @@ public class AppBasicsTests {
 	/**
 	 * @throws java.lang.Exception
 	 */
-	@BeforeClass
+	// @BeforeClass
+	@Test(enabled = true)
 	public static void setUpBeforeClass() throws Exception {
 	}
 
 	/**
 	 * @throws java.lang.Exception
 	 */
-	@AfterClass
+	// @AfterClass
+	@Test(enabled = true)
 	public static void tearDownAfterClass() throws Exception {
 	}
 

@@ -26,8 +26,19 @@ public class MyMath {
 
 	// A static method which divides one number by another 1/2
 	public static double divideNumbers(double num1, double num2) {
-		double didvresult = num1 / num2;
-		return didvresult;
+
+		double divresult;
+		// try {
+		if (num2 == 0) {
+			System.out.println("!Sorry you have entered zero");
+			// return Infinity;
+		}
+		// } catch (NumberFormatException e) {
+		// System.out.println("Entered correct value");
+		// }
+		return num1 / num2;
+		// return Double.toString(divresult);
+
 	}
 
 	// A static method which let the user know if there is a clean division with

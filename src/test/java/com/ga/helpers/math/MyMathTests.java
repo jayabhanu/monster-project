@@ -1,7 +1,12 @@
 package com.ga.helpers.math;
 
-import org.junit.Ignore;
-import org.junit.Test;
+import static org.testng.Assert.assertEquals;
+
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+
+//import org.junit.Ignore;
+//import org.junit.Test;
 
 import com.ga.util.helper.exceptions.MyMath;
 
@@ -30,35 +35,22 @@ import com.ga.util.helper.exceptions.MyMath;
 
 // @RunWith(Parameterized.class)
 public class MyMathTests {
-	// @Parameters
-	// public static Object[][] getData() {
-	// Object[][] data = { { 2.0, 2.0, 4.0 }, { 5.0, 2.0, 25.0 }, { 4.0, 3.0,
-	// 64.0 }, { 1.0, 0.0, 1.0 },
-	// { 3.0, 1.0, 3.0 }, { 2.0, 1.5, 4.5 } };
-	// return data;
-	// }
-	//
-	// private double expectedResult;
-	// private double num;
-	// private double power;
-	//
-	// public MyMathTests(double num, double power, double expectedResult) {
-	// super();
-	// this.num = num;
-	// this.power = power;
-	// this.expectedResult = expectedResult;
-	// }
+	@DataProvider(name = "Power Data")
+	public static Object[][] getData() {
+		Object[][] data = { { 2.0, 2.0, 4.0 }, { 5.0, 2.0, 25.0 }, { 4.0, 3.0, 64.0 }, { 9.0, 0.0, 1.0 },
+				{ 3.0, 1.0, 3.0 }, { 2.0, 1.5, 2.8 } };
+		return data;
+	}
 
-	// @Test
-	// @Ignore
-	// public void testDivideNumbers() {
-	// double result;
-	// double number1 = 8;
-	// double number2 = 2;
-	// result = MyMath.divideNumbers(number1, number2);
-	// System.out.println(String.format("The result of dividing %.0f with %.0f
-	// is %.0f", number1, number2, result));
-	// }
+	@Test(enabled = true)
+	public void testDivideNumbers() {
+		double result;
+		double number1 = 8;
+		double number2 = 0;
+		result = MyMath.divideNumbers(number1, number2);
+		System.out.println(String.format("The result of dividing %.0f with %.0f is %.0f", number1, number2, result));
+
+	}
 
 	// MyMath mymathconstructor;
 
@@ -68,8 +60,7 @@ public class MyMathTests {
 	// MyMath mymathconstructor = new MyMath(1);
 	// }
 
-	@Test
-	// @Ignore
+	@Test(enabled = false)
 	public void testMyMathClass() {
 		double result;
 		double addNumber = 10;
@@ -109,27 +100,23 @@ public class MyMathTests {
 
 	}
 
-	// @Test
-	// @Ignore
-	// public void testPowerNumbers() {
-	// double actualResult;
-	// double expectedResult = this.expectedResult;
-	// double num = this.num;
-	// double power = this.power;
-	// actualResult = MyMath.powerNumber(num, power);
-	// String message = String.format("The result of %.0f with power %.0f is
-	// %.0f", num, power, actualResult);
-	// System.out.println(message);
-	// Assert.assertEquals(message, expectedResult, actualResult, 0);
-	// }
+	@Test(dataProvider = "Power Data")
+	public void testPowerNumbers(double num, double power, double expectedResult) {
+		double actualResult;
+		actualResult = MyMath.powerNumber(num, power);
+		String message = String.format("The result of %.0f with power %.0f is%.0f", num, power, actualResult);
+		System.out.println(message);
+		// TestNG PArams: Actual, Expected, Delta,
+		assertEquals(actualResult, expectedResult, 0.1, message);
+	}
 
-	@Test
-	@Ignore
+	@Test(enabled = false)
 	public void testPowerNumbers2() {
 		double result;
 		double num = 3;
 		double power = 2;
 		result = MyMath.powerNumber(num, power);
-		System.out.println(String.format("The result of %.0f with power %.0f is %.0f", num, power, result));
+		System.out.println(String.format("The result of %.0f with power %.0f is%.0f", num, power, result));
 	}
+
 }
