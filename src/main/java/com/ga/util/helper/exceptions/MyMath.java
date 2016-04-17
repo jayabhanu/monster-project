@@ -27,18 +27,54 @@ public class MyMath {
 	// A static method which divides one number by another 1/2
 	public static double divideNumbers(double num1, double num2) {
 
-		double divresult;
-		// try {
-		if (num2 == 0) {
-			System.out.println("!Sorry you have entered zero");
-			// return Infinity;
+		int divresult = 0;
+		try {
+			divresult = (int) num1 / 0;
+		} catch (ArithmeticException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Can not divide by 0!");
 		}
+		// try {
+		// if (num2 == 0) {
+		// System.out.println("!Sorry you have entered zero");
+		// return 0;
+		// }
 		// } catch (NumberFormatException e) {
 		// System.out.println("Entered correct value");
 		// }
+		System.out.println("Div Result:" + num1 / num2);
+		if (divresult == Double.POSITIVE_INFINITY) {
+			System.out.println("Positive Infinity!");
+		}
 		return num1 / num2;
 		// return Double.toString(divresult);
 
+	}
+
+	public static boolean evalPrime(int... number) {
+		for (int j = 0; j < number.length; j++) {
+			if (number[j] < 2) {
+				return false;
+			} else {
+				for (int i = 2; i <= number[j] / 2; i++) {
+					if (number[j] % 2 == 0) {
+						return false;
+					}
+				}
+				// return true;
+			}
+
+		}
+		return true;
+	}
+
+	public static boolean[] evalPrimes(int[] numbers) {
+		MyMath prime = new MyMath();
+		boolean[] resultArray = new boolean[numbers.length];
+		for (int i = 0; i < numbers.length; i++) {
+			resultArray[i] = prime.isPrimeNumber(numbers[i]);
+		}
+		return resultArray;
 	}
 
 	// A static method which let the user know if there is a clean division with
@@ -104,6 +140,10 @@ public class MyMath {
 
 	}
 
+	public boolean evalPrime() {
+		return MyMath.evalPrime((int) getTotal());
+	}
+
 	/**
 	 * @return the result
 	 */
@@ -114,6 +154,24 @@ public class MyMath {
 	// To get the current total
 	public double getTotal() {
 		return this.result;
+	}
+
+	public boolean isPrimeNumber(int num) {
+		int count = 0;
+		if (num == 1) {
+			System.out.println("One is nither prime nor composite number, It is special number");
+			return false;
+		}
+		for (int i = 1; i <= num; i++) {
+			if (num % i == 0) {
+				count++;
+			}
+		}
+		if (count == 2) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	// To multiply a number to total
