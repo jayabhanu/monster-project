@@ -10,7 +10,11 @@
 
 package com.ga.util.helpers;
 
-import org.junit.*;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 /**
  * RequestInputTestsTest //ADDD (description of class)
@@ -44,14 +48,14 @@ public class RequestInputTestsTest {
 	/**
 	 * @throws java.lang.Exception
 	 */
-	@Before
+	@BeforeMethod
 	public void setUp() throws Exception {
 	}
 
 	/**
 	 * @throws java.lang.Exception
 	 */
-	@After
+	@AfterMethod
 	public void tearDown() throws Exception {
 	}
 

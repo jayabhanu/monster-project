@@ -10,11 +10,15 @@
 
 package com.ga.util.helpers;
 
-import java.util.*;
+import java.util.Scanner;
 
-import org.junit.*;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
-import com.ga.util.helper.*;
+import com.ga.util.helper.RequestInput;
 
 /**
  * RequestInputTests //ADDD (description of class)
@@ -61,7 +65,7 @@ public class RequestInputTests {
 	 * {@link com.ga.util.helper.RequestInput#getChar(java.lang.String)}.
 	 */
 
-	@Before
+	@BeforeMethod
 	public void clearVariables() {
 		question = "";
 		userValue = "";
@@ -74,14 +78,13 @@ public class RequestInputTests {
 	 * @param question
 	 * @param userValue
 	 */
-	@After
+	@AfterMethod
 	public void displayOutput() {
 		System.out.println("For the question \"" + question + "\", you have given the value of (" + userValue + ")");
 
 	}
 
 	@Test
-	@Ignore
 	public void testGetCharString() {
 
 	}
@@ -92,7 +95,6 @@ public class RequestInputTests {
 	 * .
 	 */
 	@Test
-	@Ignore
 	public void testGetCharStringCharArray() {
 		question = "Please enter any word to find owvals";
 		userValue = RequestInput.getChar(question, 'e', 'r', 't', 'g', 'b', 'v', 'm', 'r', 'p', 'i', 'a', 'e', 'u', 'b',
@@ -104,7 +106,6 @@ public class RequestInputTests {
 	 * {@link com.ga.util.helper.RequestInput#getDouble(java.lang.String)}.
 	 */
 	@Test
-	@Ignore
 	public void testGetDouble() {
 
 	}
